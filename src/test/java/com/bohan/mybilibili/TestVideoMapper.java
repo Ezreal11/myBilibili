@@ -52,4 +52,12 @@ public class TestVideoMapper {
 
     }
 
+    @Test
+    public void test4() {
+        List<Video> allVideo = videoMapper.getAllVideo();
+        for (Video v : allVideo) {
+            System.out.println(v.toString());
+        }
+    }
+
 }

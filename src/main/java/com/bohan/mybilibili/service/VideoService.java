@@ -39,6 +39,10 @@ public class VideoService {
         return video;
     }
 
+    public List<Video> getAllVideo(){
+        return videoMapper.getAllVideo();
+    }
+
     //根据bv号发布视频
     //向video表和play表插入数据
     public String publishVideo(Video video) {

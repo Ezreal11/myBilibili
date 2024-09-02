@@ -203,12 +203,20 @@
         }
         .head-con .head-left .cur-page {
             font-size: 12px;
-            color: #9499A0
+            color: #9499A0;
             line-height: 16px;
         }
     </style>
 </head>
 <body>
+<button class="back-button">返回首页</button>
+
+<script>
+    document.querySelector('.back-button').addEventListener('click', function() {
+        window.location.href = 'home.html'; // Redirect to home.html when the button is clicked
+    });
+</script>
+
 <div>
     <div class="video-container-v1">
         <div class="video-left">

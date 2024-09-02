@@ -3,11 +3,16 @@ package com.bohan.mybilibili.mapper;
 import com.bohan.mybilibili.dto.Video;
 import org.apache.ibatis.annotations.*;
 
+import java.util.List;
+
 @Mapper
 public interface VideoMapper {
     //根据bv查询Video
     @Select("SELECT * from video where bv=#{bv};")
     Video getVideoByBv(String bv);
+
+    @Select("SELECT * from video;")
+    List<Video> getAllVideo();
 
     @Insert("""
             INSERT into video (type, category, title, cover, introduction, publish_time, tags)

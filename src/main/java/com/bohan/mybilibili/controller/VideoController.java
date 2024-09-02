@@ -37,6 +37,12 @@ public class VideoController {
         return v;
     }
 
+    @RequestMapping("/videolist")
+    @ResponseBody
+    public List<Video> getVideoList() {
+        return videoService.getAllVideo();
+    }
+
     @RequestMapping("/publish")
     @ResponseBody
     public Map<String, String> upload(@RequestBody Video video) {    //用Video对象对应json

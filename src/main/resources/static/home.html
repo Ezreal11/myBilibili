@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>视频列表</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        #videoList {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        .video {
+            width: 30%; /* Adjust the width to fit the desired number of videos per row */
+            margin: 10px;
+            background-color: #fff;
+            border-radius: 5px;
+            overflow: hidden;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+        .video img {
+            width: 100%;
+            display: block;
+            cursor: pointer; /* Change cursor to pointer on hover for better UX */
+        }
+        .video h3 {
+            margin: 10px 0;
+        }
+    </style>
+</head>
+<body>
+
+<button class="back-button">上传视频</button>
+
+<script>
+    document.querySelector('.back-button').addEventListener('click', function() {
+        window.location.href = 'upload.html';
+    });
+</script>
+
+<div id="videoList"></div>
+
+<script src="js/common.js"></script>
+<script>
+
+    fetch(`${host}/videolist`)
+        .then(response => response.json())
+        .then(data => {
+            const videoListDiv = document.getElementById('videoList');
+
+            data.forEach(video => {
+                const videoDiv = document.createElement('div');
+                videoDiv.className = 'video';
+
+                const videoImage = document.createElement('img');
+                videoImage.src = '/img/' + video.cover; // Assuming 'cover' is the URL of the video cover image
+                videoImage.alt = video.title;
+                videoImage.addEventListener('click', () => {
+                    window.location.href = `${host}/video.html#${video.bv}`;
+                });
+
+                const videoTitle = document.createElement('h3');
+                videoTitle.textContent = video.title;
+
+                videoDiv.appendChild(videoImage);
+                videoDiv.appendChild(videoTitle);
+                videoListDiv.appendChild(videoDiv);
+            });
+        })
+        .catch(error => {
+            console.error('Error fetching video list:', error);
+        });
+</script>
+
+</body>
+</html>
